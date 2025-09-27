@@ -40,3 +40,14 @@ def delete_lead(lead_id: UUID, db: Session = Depends(get_db)):
     if not deleted:
         raise HTTPException(status_code=404, detail="Lead not found")
     return deleted
+
+@router.get("/count-by-status")
+def count_by_status(db: Session = Depends(get_db)):
+    statuses = ["new", "in_progress", "closed"]
+    result = {s: 0 for s in statuses}
+
+    rows = db.query(Lead.status, func.count(Lead.lead_id)).group_by(Lead.status).all()
+    for status, cnt in rows:
+        result[status] = cnt
+
+    return [{"status": k, "total_leads": v} for k, v in result.items()]

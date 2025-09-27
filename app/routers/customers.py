@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import Optional
 from uuid import UUID
+from app.models.product import Product  # assuming this exists
 
 from app import crud
 from app.db import get_db
@@ -45,6 +46,18 @@ def get_customers(
     db: Session = Depends(get_db)
 ):
     return crud.customer.list_customers(db, skip, limit, user_id)
+
+# Customers per product using Leads table
+@router.get("/count-by-product")
+def customers_per_product(db: Session = Depends(get_db)):
+    # Check if Leads table has entries
+    results = (
+        db.query(Product.name, func.count(func.distinct(Lead.customer_id)))
+        .join(Lead, Lead.product_id == Product.product_id)
+        .group_by(Product.name)
+        .all()
+    )
+    return [{"product": r[0], "total_customers": r[1]} for r in results]
 
 
 @router.get("/{customer_id}", response_model=customer_schemas.CustomerOut)
