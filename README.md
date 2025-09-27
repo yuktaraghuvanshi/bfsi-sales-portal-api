@@ -38,10 +38,8 @@ pip install -r requirements.txt
 # Step 3: Run migrations
 alembic upgrade head
 
-# Step 4: Optional - create admin or seed data
-python scripts/create_admin.py
 
-# Step 5: Start backend server
+# Step 4: Start backend server
 python -m uvicorn app.main:app --reload --log-level debug
 # Server will run at http://localhost:8000
 
