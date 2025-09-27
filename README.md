@@ -45,5 +45,5 @@ python scripts/create_admin.py
 python -m uvicorn app.main:app --reload --log-level debug
 # Server will run at http://localhost:8000
 
-DATABASE_URL=postgresql://postgres:Yukta.r#250825@localhost/bfsi_db
+DATABASE_URL=postgresql://postgres:password@localhost/db
 AUTHJWT_SECRET_KEY=supersecretkey
