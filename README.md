@@ -23,7 +23,7 @@ Backend for BFSI Sales & Lead Portal, built with FastAPI and PostgreSQL, providi
 ---
 
 ## 3. Environment Variables
-Create a `.env` file in `backend/`:
+Create a `.env` file in `bfsi-sales-portal-api/`:
 
 ```env
 4. Setup & Run
