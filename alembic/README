@@ -1,1 +1,89 @@
 Generic single-database configuration.
+# BFSI Sales Portal Backend — Shreed Vyas and Yukta Raghuvanshi
+
+**Project**: BFSI Sales & Lead Portal  
+**Assignment**: Assessment Project (AccMoveOn Technologies)  
+**Submitted by**: Shreed Vyas and Yukta Raghuvanshi  
+**Repo**: https://github.com/yuktaraghuvanshi/bfsi-sales-portal-api.git  
+**Assignment Date**: 19-Sep-2025  
+**Submission Date**: 26-Sep-2025
+
+---
+
+## 1. Project Overview
+Backend for BFSI Sales & Lead Portal, built with FastAPI and PostgreSQL, providing REST APIs for user authentication, customer, product, and lead management, along with dashboard metrics.
+
+---
+
+## 2. Prerequisites
+- Python 3.10+  
+- PostgreSQL 13+  
+- Virtual environment (`venv`)  
+- Environment variables (see `.env`)
+
+---
+
+## 3. Environment Variables
+Create a `.env` file in `backend/`:
+
+```env
+DATABASE_URL=postgresql://postgres:Yukta.r#250825@localhost/bfsi_db
+AUTHJWT_SECRET_KEY=supersecretkey
+
+
+
+python -m venv .venv
+.\.venv\Scripts\activate     # Windows
+# or source .venv/bin/activate  # Linux / Mac
+
+# Step 2: Install dependencies
+pip install -r requirements.txt
+
+
+
+## 2. Complete List of Key API Endpoints
+
+### Users / Admin
+
+| Method | Endpoint           | Description                       |
+|--------|------------------|-----------------------------------|
+| POST   | /users/login      | Login and get JWT token           |
+| POST   | /users/refresh    | Refresh access token using refresh token |
+| POST   | /users/logout     | Logout and revoke refresh token  |
+| POST   | /users/           | Create a new user                 |
+| GET    | /users/           | List all users                    |
+| GET    | /users/{user_id}  | Get user details                  |
+
+### Customers
+
+| Method | Endpoint                        | Description                   |
+|--------|--------------------------------|-------------------------------|
+| POST   | /customers/                     | Create a customer             |
+| GET    | /customers/                     | List customers                |
+| GET    | /customers/{customer_id}        | Get customer by ID            |
+| PUT    | /customers/{customer_id}        | Update customer               |
+| DELETE | /customers/{customer_id}        | Delete customer               |
+| GET    | /customers/count-by-product     | Customers per product         |
+
+### Products
+
+| Method | Endpoint                        | Description                   |
+|--------|--------------------------------|-------------------------------|
+| POST   | /products/                      | Create a product              |
+| GET    | /products/                      | List products                 |
+| GET    | /products/{product_id}          | Get product by ID             |
+| PUT    | /products/{product_id}          | Update product                |
+| DELETE | /products/{product_id}          | Delete product                |
+
+### Leads
+
+| Method | Endpoint                        | Description                   |
+|--------|--------------------------------|-------------------------------|
+| POST   | /leads/                         | Create a lead                 |
+| GET    | /leads/                         | List leads                    |
+| GET    | /leads/{lead_id}                | Get lead by ID                |
+| PUT    | /leads/{lead_id}                | Update lead                   |
+| DELETE | /leads/{lead_id}                | Delete lead                   |
+| GET    | /leads/count-by-status          | Count leads by status         |
+
+
